@@ -34,9 +34,9 @@ alert(0);
   // Initialize Firebase
   const app = firebase.initializeApp(firebaseConfig); alert(1);
   
-        const database = firebase.database();
+        const database = firebase.database(app);
 
-        alert(1);
+        alert(2);
         // Get data from Firebase Realtime Database
         const dataRef = database.ref('test');  // Reference to the path in your database
 alert(2);
