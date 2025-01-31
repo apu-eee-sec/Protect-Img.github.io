@@ -7,6 +7,9 @@
     <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
+    
+  <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/firebase/init.js"></script>
 </head>
 <body>
     <h1>Firebase Data</h1>
@@ -29,7 +32,7 @@
   };
 alert(0);
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig); alert(000);
+  const app = firebase.initializeApp(firebaseConfig); alert(000);
   const analytics = getAnalytics(app);; alert(00);
         const database = firebase.database();
 
