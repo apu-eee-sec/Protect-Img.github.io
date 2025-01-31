@@ -21,16 +21,17 @@
     appId: "1:228825738620:web:4e9b950010c50eeb7288f9",
     measurementId: "G-6Y4X83LM3M"
   };
-
+alert(0);
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = database(app);
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
+        alert(1);
         // Get data from Firebase Realtime Database
         const dataRef = database.ref('test');  // Reference to the path in your database
-
+alert(2);
         dataRef.get()
-            .then((snapshot) => {alert(99);
+            .then((snapshot) => {alert(4);
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     document.getElementById('data').innerText = JSON.stringify(data, null, 2);
