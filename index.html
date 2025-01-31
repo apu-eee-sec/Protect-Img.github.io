@@ -9,10 +9,16 @@
 <body>
     <script src="firebase.js" type="module"></script>
     <script>alert(77);
-        database.ref('test').once('value', function(snapshot) {
-  var data = snapshot.val();
-  alert(data);
-});
+                const ref = firebase.database().ref('test');
+
+        ref.get().then((snapshot) => {
+
+            const data = snapshot.val();
+
+            // Update your HTML elements with the retrieved data
+           alert(data);
+        });
+
     </script>
 </body>
 </html>
