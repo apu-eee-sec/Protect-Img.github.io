@@ -1,1 +1,2 @@
-serve-image.php
+# ignore ALL files in ANY directory named temp
+img/
