@@ -41,7 +41,7 @@ alert(0);
         // Get data from Firebase Realtime Database
         const dataRef = database.ref('test');  // Reference to the path in your database
 alert(2);
-        dataRef.get()
+       /* dataRef.get()
             .then((snapshot) => {alert(4);
                 if (snapshot.exists()) {
                     const data = snapshot.val();
@@ -52,7 +52,12 @@ alert(2);
             })
             .catch((error) => {
                 alert(error);
-            });
+            });*/
+        database.ref('tesr').once('value', function(snapshot) {
+  var data = snapshot.val();
+  alert(data);
+            alert(99);
+});
     </script>
 </body>
 </html>
