@@ -30,7 +30,7 @@
         const dataRef = database.ref('test');  // Reference to the path in your database
 
         dataRef.get()
-            .then((snapshot) => {
+            .then((snapshot) => {alert(99);
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     document.getElementById('data').innerText = JSON.stringify(data, null, 2);
