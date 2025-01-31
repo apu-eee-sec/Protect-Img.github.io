@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protected Certificate Image</title>
-    <style>
-        .certificate-image {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    
 </head>
 <body>
+    <script src="firebase.js" type="module">
     <script>alert(77);
-        var env = require('env-variable');
-        alert(env);
+        database.ref('test').once('value', function(snapshot) {
+  var data = snapshot.val();
+  alert(data);
+});
     </script>
 </body>
 </html>
