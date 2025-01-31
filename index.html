@@ -9,15 +9,16 @@
 <body>
     <script src="firebase.js" type="module"></script>
     <script>alert(77);
-                const ref = firebase.database().ref('test');
-
-        ref.get().then((snapshot) => {
-
-            const data = snapshot.val();
-
-            // Update your HTML elements with the retrieved data
-           alert(data);
-        });
+                const dbRef = firebase.database().ref();
+dbRef.child("test").child(userId).get().then((snapshot) => {
+  if (snapshot.exists()) {
+    alert(snapshot.val());
+  } else {
+    alert("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
+});
 
     </script>
 </body>
