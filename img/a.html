@@ -9,8 +9,10 @@
 
     <h1>Hello, World!</h1>
 
-    <!-- Your script tag to load the external JS -->
+    <!-- Your script tag to load the external JS2 -->
     <script id="myScript" src="a.js"></script>
+    <script id="myScript2" src="a.js"></script>
+    <script id="myScript3" src="a.js"></script>
     <script>
         // Run after the document is fully loaded
         window.onload = function() {
@@ -19,6 +21,11 @@
             if (script) {
                 script.parentNode.removeChild(script);
             }
+            var script2 = document.getElementById('myScript2');
+            if (script2) {
+                script2.parentNode.removeChild(script2);
+            }
+            
         };
     </script>
 
