@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide Script</title>
+</head>
+<body>
+
+    <h1>Hello, World!</h1>
+
+    <!-- Your script tag to load the external JS -->
+    <script id="myScript" src="your-script.js"></script>
+
+    <script>
+        // Run after the document is fully loaded
+        window.onload = function() {
+            // Find the script tag by its ID and remove it
+            var script = document.getElementById('myScript');
+            if (script) {
+                script.parentNode.removeChild(script);
+            }
+        };
+    </script>
+
+</body>
+</html>
