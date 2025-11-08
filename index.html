@@ -1,54 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detect City from IP</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .info-box {
-      background: white;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    h1 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      color: #333;
-    }
-    p {
-      font-size: 1.2em;
-      color: #555;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Device Detection</title>
+<!-- Include WURFL.js script -->
+<script src="https://wurfl.io/wurfl.js"></script>
 </head>
 <body>
-  <div class="info-box">
-    <h1>Your Location</h1>
-    <p id="location">Fetching...</p>
-  </div>
 
-  <script>
-    fetch('https://ipapi.co/json/')
-      .then(r => r.json())
-      .then(d => {
-        document.getElementById('location').textContent =
-          `${d.city}, ${d.country_name}`;
-      })
-      .catch(() => {
-        document.getElementById('location').textContent = 'Unable to fetch location';
-      });
-  </script>
+<h1>Device Detection</h1>
+<p id="deviceName">Detecting device...</p>
+
+<script>
+  // Wait until WURFL is ready
+  WURFL.init().then(() => {
+      // Get complete device name
+      const deviceName = WURFL.complete_device_name || "Unknown Device";
+      document.getElementById('deviceName').innerText = `Device Name: ${deviceName}`;
+      console.log("Device Info:", WURFL);
+  });
+</script>
+
 </body>
 </html>
