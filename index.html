@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>IP → City demo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial; padding: 28px; max-width: 720px; margin: auto; color:#222; }
+    header { margin-bottom: 18px; }
+    h1 { margin: 0 0 6px 0; font-size: 20px; }
+    .card { padding: 18px; border-radius: 10px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); background: #fff; }
+    pre { white-space: pre-wrap; word-wrap: break-word; background:#f6f7fb; padding:12px; border-radius:6px; font-size:13px; }
+    .muted { color: #666; font-size: 13px; }
+    button { margin-top: 12px; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>IP → City (using local MMDB)</h1>
+    <div class="muted">This page requests <code>/geo</code> from the server which looks up the IP in the GeoLite2 City DB.</div>
+  </header>
+
+  <div class="card" id="card">
+    <div id="status">Loading…</div>
+    <pre id="out" style="display:none"></pre>
+
+    <div style="margin-top:12px;">
+      <button id="refresh">Refresh</button>
+      <button id="testLocal" title="Useful when testing locally">Use example IP (8.8.8.8)</button>
+    </div>
+  </div>
+
+  <script>
+    async function fetchGeo(ipOverride) {
+      const url = ipOverride ? ('/geo?ip=' + encodeURIComponent(ipOverride)) : '/geo';
+      document.getElementById('status').textContent = 'Fetching ' + url + ' ...';
+      document.getElementById('out').style.display = 'none';
+      try {
+        const r = await fetch(url, { cache: 'no-store' });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const j = await r.json();
+        document.getElementById('status').textContent = j.found ? ('IP: ' + j.ip + ' — ' + (j.city || 'Unknown city')) : ('No data for IP: ' + j.ip);
+        document.getElementById('out').textContent = JSON.stringify(j, null, 2);
+        document.getElementById('out').style.display = 'block';
+      } catch (err) {
+        document.getElementById('status').textContent = 'Error: ' + (err.message || err);
+      }
+    }
+
+    document.getElementById('refresh').addEventListener('click', () => fetchGeo());
+    document.getElementById('testLocal').addEventListener('click', () => fetchGeo('8.8.8.8'));
+
+    // initial load
+    fetchGeo();
+  </script>
+</body>
+</html>
