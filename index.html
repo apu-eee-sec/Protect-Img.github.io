@@ -13,12 +13,15 @@
 
 <script>
   // Wait until WURFL is ready
+  alert(1);
   WURFL.init().then(() => {
+      alert(2);
       // Get complete device name
       const deviceName = WURFL.complete_device_name || "Unknown Device";
       document.getElementById('deviceName').innerText = `Device Name: ${deviceName}`;
       console.log("Device Info:", WURFL);
   });
+  alert(3);
 </script>
 
 </body>
